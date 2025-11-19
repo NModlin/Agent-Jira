@@ -159,5 +159,87 @@ async def get_overall_progress() -> dict:
         logger.error(f"Error in get_overall_progress: {str(e)}")
         return {"error": str(e)}
 
+@tool
+async def get_unassigned_queue(priority: str = None) -> dict:
+    """
+    Get unassigned tickets in the HD project, optionally filtered by priority.
+    Use for queries like "unassigned tickets", "what can I pick up?", "new tickets".
+    """
+    try:
+        # Hardcoded to HD project for this specific role
+        logger.info(f"Fetching unassigned queue for HD")
+        jql = f"project = HD AND assignee IS EMPTY AND status != Done"
+        
+        if priority:
+            jql += f" AND priority = '{priority}'"
+            
+        jql += " ORDER BY created DESC"
+        
+        result = await mcp_client.call_tool("jira_search", {
+            "jql": jql,
+            "fields": "summary,priority,created",
+            "limit": 10
+        })
+        
+        if not result.content:
+            return {"count": 0, "issues": []}
+            
+        data_text = result.content[0].text
+        # Handle potential empty text response
+        if not data_text:
+            return {"count": 0, "issues": []}
+
+        data = json.loads(data_text)
+        issues = []
+        for i in data.get("issues", []):
+            issues.append({
+                "key": i["key"],
+                "summary": i["fields"]["summary"],
+                "priority": i["fields"]["priority"]["name"]
+            })
+            
+        return {"count": len(issues), "issues": issues}
+    except Exception as e:
+        return {"error": str(e)}
+
+@tool
+async def add_ticket_comment(issue_key: str, comment: str) -> str:
+    """
+    Add a comment to a specific Jira ticket.
+    Use when the user wants to reply/add a note. e.g., "Add comment to HD-123..."
+    """
+    try:
+        logger.info(f"Adding comment to {issue_key}")
+        await mcp_client.call_tool("jira_add_comment", {
+            "issue_key": issue_key,
+            "comment": comment
+        })
+        return f"✅ Comment added to {issue_key} successfully."
+    except Exception as e:
+        return f"❌ Error adding comment: {str(e)}"
+
+@tool
+async def assign_ticket_to_user(issue_key: str, username: str) -> str:
+    """
+    Assign a Jira ticket to a specific user.
+    Use when user says "assign HD-123 to me" or "grab this ticket".
+    """
+    try:
+        logger.info(f"Assigning {issue_key} to {username}")
+        await mcp_client.call_tool("jira_update_issue", {
+            "issue_key": issue_key,
+            "fields": { "assignee": username }
+        })
+        return f"✅ Ticket {issue_key} assigned to {username}."
+    except Exception as e:
+        return f"❌ Error assigning ticket: {str(e)}"
+
 # List of all available tools
-ALL_TOOLS = [get_bugs_summary, get_tasks_for_user, get_overall_progress]
+ALL_TOOLS = [
+    get_bugs_summary, 
+    get_tasks_for_user, 
+    get_overall_progress,
+    get_unassigned_queue,
+    add_ticket_comment,
+    assign_ticket_to_user
+]

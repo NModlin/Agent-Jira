@@ -7,18 +7,19 @@ const JiraDashboard = () => {
     {
       id: 1,
       type: 'ai',
-      text: 'Hello! I\'m your Jira AI assistant. I can help you with:\n\n• Bug summaries and counts\n• Individual team member workloads\n• Overall team progress\n\nWhat would you like to know?'
+      text: '👋 Hi! I\'m your Help Desk Assistant for project HD.\n\nI can help you:\n• Find unassigned tickets\n• Check your active queue\n• Update tickets & add comments\n\nWhat should we work on first?'
     }
   ]);
   const [inputValue, setInputValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
   // Suggested queries for quick access
+  // Suggested queries for quick access
   const suggestedQueries = [
-    "How many bugs do we have?",
-    "What is Alice Smith working on?",
-    "Show me our team progress",
-    "How many critical bugs are there?"
+    "Show me unassigned tickets",
+    "What is on my plate?",
+    "Summarize the high priority bugs",
+    "Any critical tickets in HD?"
   ];
 
   // Function to fetch real AI response from Agent Server
@@ -37,7 +38,7 @@ const JiraDashboard = () => {
       }
 
       const data = await response.json();
-      
+
       // Add AI response to messages
       setMessages(prev => [...prev, {
         id: Date.now(),
@@ -106,7 +107,7 @@ const JiraDashboard = () => {
           <div className="header-content">
             <Bot className="header-icon" size={32} />
             <div>
-              <h1 className="header-title">Jira Cheer Dashboard</h1>
+              <h1 className="header-title">HD Support Assistant</h1>
               <p className="header-subtitle">AI-Powered Team Analytics</p>
             </div>
           </div>
