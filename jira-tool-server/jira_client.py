@@ -11,23 +11,31 @@ class JiraClient:
     def __init__(self):
         """Initialize Jira client with credentials from config."""
         Config.validate()
+        # Configure to use Jira REST API v3 instead of deprecated v2
+        # get_server_info=True is required for cloud-specific methods like enhanced_search_issues
+        options = {
+            'server': Config.JIRA_URL,
+            'rest_api_version': '3'  # Use API v3 instead of deprecated v2
+        }
         self.jira = JIRA(
-            server=Config.JIRA_URL,
-            basic_auth=(Config.JIRA_EMAIL, Config.JIRA_API_TOKEN)
+            options=options,
+            basic_auth=(Config.JIRA_EMAIL, Config.JIRA_API_TOKEN),
+            get_server_info=True  # Required for Jira Cloud enhanced_search_issues
         )
     
     def get_bugs_summary(self):
         """
         Get summary of all open bugs for the team.
-        
+
         Returns:
             dict: Summary containing total bugs, critical bugs, etc.
         """
         # JQL query for all open bugs
-        jql = 'project = YOUR_PROJECT AND type = Bug AND status != Done'
-        
+        jql = f'project = {Config.JIRA_PROJECT} AND type = Bug AND status != Done'
+
         try:
-            issues = self.jira.search_issues(jql, maxResults=1000)
+            # Use enhanced_search_issues for Jira Cloud (supports API v3)
+            issues = self.jira.enhanced_search_issues(jql, maxResults=1000)
             
             # Count bugs by priority
             priority_counts = {}
@@ -60,7 +68,8 @@ class JiraClient:
         jql = f'assignee = "{username}" AND status != Done'
         
         try:
-            issues = self.jira.search_issues(jql, maxResults=1000)
+            # Use enhanced_search_issues for Jira Cloud (supports API v3)
+            issues = self.jira.enhanced_search_issues(jql, maxResults=1000)
             
             # Separate tasks and bugs
             tasks = [issue for issue in issues if issue.fields.issuetype.name != 'Bug']
@@ -80,23 +89,25 @@ class JiraClient:
     def get_overall_progress(self):
         """
         Get overall team progress metrics.
-        
+
         Returns:
             dict: Progress metrics including completed tasks, story points, etc.
         """
         # JQL queries for progress metrics
-        completed_jql = 'project = YOUR_PROJECT AND status = Done AND resolved >= -7d'
-        in_progress_jql = 'project = YOUR_PROJECT AND status = "In Progress"'
-        todo_jql = 'project = YOUR_PROJECT AND status = "To Do"'
-        
+        completed_jql = f'project = {Config.JIRA_PROJECT} AND status = Done AND resolved >= -7d'
+        in_progress_jql = f'project = {Config.JIRA_PROJECT} AND status = "In Progress"'
+        todo_jql = f'project = {Config.JIRA_PROJECT} AND status = "To Do"'
+
         try:
-            completed_issues = self.jira.search_issues(completed_jql, maxResults=1000)
-            in_progress_issues = self.jira.search_issues(in_progress_jql, maxResults=1000)
-            todo_issues = self.jira.search_issues(todo_jql, maxResults=1000)
-            
+            # Use enhanced_search_issues for Jira Cloud (supports API v3)
+            completed_issues = self.jira.enhanced_search_issues(completed_jql, maxResults=1000)
+            in_progress_issues = self.jira.enhanced_search_issues(in_progress_jql, maxResults=1000)
+            todo_issues = self.jira.enhanced_search_issues(todo_jql, maxResults=1000)
+
             # Calculate story points (if available)
+            # Use configured custom field ID
             completed_points = sum(
-                getattr(issue.fields, 'customfield_10016', 0) or 0 
+                getattr(issue.fields, Config.JIRA_STORY_POINTS_FIELD, 0) or 0
                 for issue in completed_issues
             )
             

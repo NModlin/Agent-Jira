@@ -10,22 +10,27 @@ load_dotenv()
 
 class Config:
     """Configuration class for the Jira Tool Server."""
-    
+
     # Jira Configuration
     JIRA_URL = os.getenv('JIRA_URL')
     JIRA_EMAIL = os.getenv('JIRA_EMAIL')
     JIRA_API_TOKEN = os.getenv('JIRA_API_TOKEN')
-    
+    JIRA_PROJECT = os.getenv('JIRA_PROJECT')
+
+    # Optional: Custom field ID for story points (varies by Jira instance)
+    # Default is customfield_10016, but you may need to change this
+    JIRA_STORY_POINTS_FIELD = os.getenv('JIRA_STORY_POINTS_FIELD', 'customfield_10016')
+
     # Server Configuration
     FLASK_PORT = int(os.getenv('FLASK_PORT', 5001))
     FLASK_DEBUG = os.getenv('FLASK_DEBUG', 'False').lower() == 'true'
-    
+
     @classmethod
     def validate(cls):
         """Validate that all required configuration is present."""
-        required_vars = ['JIRA_URL', 'JIRA_EMAIL', 'JIRA_API_TOKEN']
+        required_vars = ['JIRA_URL', 'JIRA_EMAIL', 'JIRA_API_TOKEN', 'JIRA_PROJECT']
         missing_vars = [var for var in required_vars if not getattr(cls, var)]
-        
+
         if missing_vars:
             raise ValueError(
                 f"Missing required environment variables: {', '.join(missing_vars)}\n"

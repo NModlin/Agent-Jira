@@ -1265,3 +1265,123 @@ ollama._types.ResponseError: Internal Server Error (status code: 500)
 During task with name 'agent' and id '181d1e4a-aae6-deaa-50d7-ac096737c252'
 2025-11-19 14:43:52,873 - werkzeug - INFO - 127.0.0.1 - - [19/Nov/2025 14:43:52] "[35m[1mPOST /api/agent/chat HTTP/1.1[0m" 500 -
 2025-11-19 14:43:53,407 - langsmith.client - WARNING - Failed to send compressed multipart ingest: langsmith.utils.LangSmithUserError: This API key is org-scoped and requires workspace specification. Please provide 'workspace_id' parameter, or set LANGSMITH_WORKSPACE_ID environment variable.
+2025-11-19 15:34:14,477 - __main__ - INFO - Configuration validated and LangSmith configured
+2025-11-19 15:34:14,479 - __main__ - INFO - Starting Agent Server on port 5002
+2025-11-19 15:34:14,480 - __main__ - INFO - LangSmith Project: Jira-Cheer-Dashboard
+2025-11-19 15:34:14,480 - __main__ - INFO - Jira Tool Server: http://localhost:5001
+2025-11-19 15:34:15,919 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5002
+ * Running on http://192.168.4.58:5002
+2025-11-19 15:34:15,920 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-11-19 15:34:15,939 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-11-19 15:34:32,654 - __main__ - INFO - Configuration validated and LangSmith configured
+2025-11-19 15:34:32,657 - __main__ - INFO - Starting Agent Server on port 5002
+2025-11-19 15:34:32,658 - __main__ - INFO - LangSmith Project: Jira-Cheer-Dashboard
+2025-11-19 15:34:32,658 - __main__ - INFO - Jira Tool Server: http://localhost:5001
+2025-11-19 15:34:32,673 - werkzeug - WARNING -  * Debugger is active!
+2025-11-19 15:34:32,685 - werkzeug - INFO -  * Debugger PIN: 488-937-965
+2025-11-19 15:34:32,724 - werkzeug - INFO - 127.0.0.1 - - [19/Nov/2025 15:34:32] "GET /health HTTP/1.1" 200 -
+2025-11-19 15:34:43,628 - __main__ - INFO - Configuration validated and LangSmith configured
+2025-11-19 15:34:43,630 - __main__ - INFO - Starting Agent Server on port 5002
+2025-11-19 15:34:43,630 - __main__ - INFO - LangSmith Project: Jira-Cheer-Dashboard
+2025-11-19 15:34:43,631 - __main__ - INFO - Jira Tool Server: http://localhost:5001
+2025-11-19 15:34:45,070 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5002
+ * Running on http://192.168.4.58:5002
+2025-11-19 15:34:45,071 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-11-19 15:34:45,072 - werkzeug - INFO -  * Restarting with stat
+2025-11-19 15:34:48,884 - __main__ - INFO - Configuration validated and LangSmith configured
+2025-11-19 15:34:48,886 - __main__ - INFO - Starting Agent Server on port 5002
+2025-11-19 15:34:48,886 - __main__ - INFO - LangSmith Project: Jira-Cheer-Dashboard
+2025-11-19 15:34:48,886 - __main__ - INFO - Jira Tool Server: http://localhost:5001
+2025-11-19 15:34:48,897 - werkzeug - WARNING -  * Debugger is active!
+2025-11-19 15:34:48,904 - werkzeug - INFO -  * Debugger PIN: 489-013-983
+2025-11-19 15:35:19,774 - app - INFO - Configuration validated and LangSmith configured
+2025-11-19 15:35:54,791 - werkzeug - INFO -  * Detected change in 'C:\\GitHub\\AgentJira\\agent-server\\debug_mcp.py', reloading
+2025-11-19 15:35:55,790 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-11-19 15:36:08,602 - __main__ - INFO - Configuration validated and LangSmith configured
+2025-11-19 15:36:08,606 - __main__ - INFO - Starting Agent Server on port 5002
+2025-11-19 15:36:08,611 - __main__ - INFO - LangSmith Project: Jira-Cheer-Dashboard
+2025-11-19 15:36:08,615 - __main__ - INFO - Jira Tool Server: http://localhost:5001
+2025-11-19 15:36:08,643 - werkzeug - WARNING -  * Debugger is active!
+2025-11-19 15:36:08,660 - werkzeug - INFO -  * Debugger PIN: 488-937-965
+2025-11-19 15:41:12,255 - werkzeug - INFO -  * Detected change in 'C:\\GitHub\\AgentJira\\agent-server\\mcp_client.py', reloading
+2025-11-19 15:41:12,256 - werkzeug - INFO -  * Detected change in 'C:\\GitHub\\AgentJira\\agent-server\\mcp_tools.py', reloading
+2025-11-19 15:41:13,838 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-11-19 15:41:23,032 - __main__ - INFO - Configuration validated and LangSmith configured
+2025-11-19 15:41:23,034 - __main__ - INFO - Starting Agent Server on port 5002
+2025-11-19 15:41:23,035 - __main__ - INFO - LangSmith Project: Jira-Cheer-Dashboard
+2025-11-19 15:41:23,035 - __main__ - INFO - Jira Tool Server: http://localhost:5001
+2025-11-19 15:41:23,046 - werkzeug - WARNING -  * Debugger is active!
+2025-11-19 15:41:23,052 - werkzeug - INFO -  * Debugger PIN: 488-937-965
+2025-11-19 15:44:33,032 - __main__ - INFO - Configuration validated and LangSmith configured
+2025-11-19 15:44:33,034 - __main__ - INFO - Starting Agent Server on port 5002
+2025-11-19 15:44:33,035 - __main__ - INFO - LangSmith Project: Jira-Cheer-Dashboard
+2025-11-19 15:44:33,035 - __main__ - INFO - Jira Tool Server: http://localhost:5001
+2025-11-19 15:44:34,482 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5002
+ * Running on http://192.168.4.58:5002
+2025-11-19 15:44:34,482 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-11-19 15:44:34,484 - werkzeug - INFO -  * Restarting with stat
+2025-11-19 15:44:39,024 - __main__ - INFO - Configuration validated and LangSmith configured
+2025-11-19 15:44:39,026 - __main__ - INFO - Starting Agent Server on port 5002
+2025-11-19 15:44:39,026 - __main__ - INFO - LangSmith Project: Jira-Cheer-Dashboard
+2025-11-19 15:44:39,027 - __main__ - INFO - Jira Tool Server: http://localhost:5001
+2025-11-19 15:44:39,048 - werkzeug - WARNING -  * Debugger is active!
+2025-11-19 15:44:39,054 - werkzeug - INFO -  * Debugger PIN: 489-013-983
+2025-11-19 15:45:11,602 - werkzeug - INFO - 127.0.0.1 - - [19/Nov/2025 15:45:11] "GET /health HTTP/1.1" 200 -
+2025-11-19 15:48:24,021 - __main__ - INFO - Received query: what tickets do i have assigned
+2025-11-19 15:48:24,022 - __main__ - INFO - Invoking agent...
+2025-11-19 15:48:24,499 - agent - INFO - Calling model with 2 messages
+2025-11-19 15:48:26,013 - werkzeug - INFO -  * Detected change in 'C:\\Users\\nmodlin.RPL\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\langsmith\\client.py', reloading
+2025-11-19 15:48:26,018 - werkzeug - INFO -  * Detected change in 'C:\\Users\\nmodlin.RPL\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\langsmith\\utils.py', reloading
+2025-11-19 15:48:26,021 - langsmith.client - WARNING - Failed to multipart ingest runs: langsmith.utils.LangSmithUserError: This API key is org-scoped and requires workspace specification. Please provide 'workspace_id' parameter, or set LANGSMITH_WORKSPACE_ID environment variable.
+2025-11-19 15:48:26,022 - werkzeug - INFO -  * Detected change in 'C:\\Users\\nmodlin.RPL\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\requests\\models.py', reloading
+2025-11-19 15:48:30,499 - httpx - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2025-11-19 15:48:32,785 - agent - INFO - Model response: content='I\'d be happy to help you check your assigned tickets! However, I need to know who you are first. \n\nCould you please tell me your full name? I need to use your complete name (like "Alice Smith", "Bob Johnson", etc.) to fetch your specific ticket information from Jira.\n\nOnce you provide your full name, I\'ll be able to pull up all your assigned tasks and bugs right away!' additional_kwargs={} response_metadata={'model': 'minimax-m2:cloud', 'created_at': '2025-11-19T20:48:32.704620495Z', 'done': True, 'done_reason': 'stop', 'total_duration': 7919041910, 'load_duration': None, 'prompt_eval_count': 705, 'prompt_eval_duration': None, 'eval_count': 192, 'eval_duration': None, 'model_name': 'minimax-m2:cloud', 'model_provider': 'ollama'} id='lc_run--97138753-c5ae-4f4b-80e7-53d6cfaa7d34-0' usage_metadata={'input_tokens': 705, 'output_tokens': 192, 'total_tokens': 897}
+2025-11-19 15:48:34,290 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-11-19 15:48:53,243 - __main__ - INFO - Configuration validated and LangSmith configured
+2025-11-19 15:48:53,246 - __main__ - INFO - Starting Agent Server on port 5002
+2025-11-19 15:48:53,248 - __main__ - INFO - LangSmith Project: Jira-Cheer-Dashboard
+2025-11-19 15:48:53,248 - __main__ - INFO - Jira Tool Server: http://localhost:5001
+2025-11-19 15:48:53,260 - werkzeug - WARNING -  * Debugger is active!
+2025-11-19 15:48:53,271 - werkzeug - INFO -  * Debugger PIN: 488-937-965
+2025-11-19 15:54:40,627 - werkzeug - INFO - 127.0.0.1 - - [19/Nov/2025 15:54:40] "GET /health HTTP/1.1" 200 -
+2025-11-19 16:30:58,924 - werkzeug - INFO -  * Detected change in 'C:\\GitHub\\AgentJira\\agent-server\\config.py', reloading
+2025-11-19 16:30:58,926 - werkzeug - INFO -  * Detected change in 'C:\\GitHub\\AgentJira\\agent-server\\agent.py', reloading
+2025-11-19 16:30:58,929 - werkzeug - INFO -  * Detected change in 'C:\\GitHub\\AgentJira\\agent-server\\app.py', reloading
+2025-11-19 16:30:58,930 - werkzeug - INFO -  * Detected change in 'C:\\GitHub\\AgentJira\\agent-server\\evaluate.py', reloading
+2025-11-19 16:30:58,931 - werkzeug - INFO -  * Detected change in 'C:\\GitHub\\AgentJira\\agent-server\\test_ollama.py', reloading
+2025-11-19 16:30:58,933 - werkzeug - INFO -  * Detected change in 'C:\\GitHub\\AgentJira\\agent-server\\tools.py', reloading
+2025-11-19 16:30:58,934 - werkzeug - INFO -  * Detected change in 'C:\\Users\\nmodlin.RPL\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\dotenv\\__init__.py', reloading
+2025-11-19 16:30:58,935 - werkzeug - INFO -  * Detected change in 'C:\\Users\\nmodlin.RPL\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\dotenv\\main.py', reloading
+2025-11-19 16:30:58,936 - werkzeug - INFO -  * Detected change in 'C:\\Users\\nmodlin.RPL\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\jira\\__init__.py', reloading
+2025-11-19 16:30:58,937 - werkzeug - INFO -  * Detected change in 'C:\\Users\\nmodlin.RPL\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\jira\\client.py', reloading
+2025-11-19 16:30:58,938 - werkzeug - INFO -  * Detected change in 'C:\\Users\\nmodlin.RPL\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\jira\\resources.py', reloading
+2025-11-19 16:31:00,935 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-11-19 16:31:08,691 - __main__ - INFO - Configuration validated and LangSmith configured
+2025-11-19 16:31:08,693 - __main__ - INFO - Starting Agent Server on port 5002
+2025-11-19 16:31:08,694 - __main__ - INFO - LangSmith Project: Jira-Cheer-Dashboard
+2025-11-19 16:31:08,694 - __main__ - INFO - Jira Tool Server: http://localhost:5001
+2025-11-19 16:31:08,704 - werkzeug - WARNING -  * Debugger is active!
+2025-11-19 16:31:08,710 - werkzeug - INFO -  * Debugger PIN: 488-937-965
+2025-11-19 16:52:05,481 - werkzeug - INFO - 127.0.0.1 - - [19/Nov/2025 16:52:05] "GET /health HTTP/1.1" 200 -
+2025-11-19 16:52:15,939 - __main__ - INFO - Received query: How many bugs do we have?
+2025-11-19 16:52:15,940 - __main__ - INFO - Invoking agent...
+2025-11-19 16:52:16,139 - agent - INFO - Calling model with 2 messages
+2025-11-19 16:52:16,985 - werkzeug - INFO -  * Detected change in 'C:\\Users\\nmodlin.RPL\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\langsmith\\client.py', reloading
+2025-11-19 16:52:16,986 - werkzeug - INFO -  * Detected change in 'C:\\Users\\nmodlin.RPL\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\langsmith\\utils.py', reloading
+2025-11-19 16:52:16,987 - langsmith.client - WARNING - Failed to multipart ingest runs: langsmith.utils.LangSmithUserError: This API key is org-scoped and requires workspace specification. Please provide 'workspace_id' parameter, or set LANGSMITH_WORKSPACE_ID environment variable.
+2025-11-19 16:52:16,989 - werkzeug - INFO -  * Detected change in 'C:\\Users\\nmodlin.RPL\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\requests\\models.py', reloading
+2025-11-19 16:52:17,139 - httpx - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2025-11-19 16:52:18,176 - agent - INFO - Model response: content='' additional_kwargs={} response_metadata={'model': 'minimax-m2:cloud', 'created_at': '2025-11-19T21:52:18.112660265Z', 'done': True, 'done_reason': 'stop', 'total_duration': 1709126372, 'load_duration': None, 'prompt_eval_count': 706, 'prompt_eval_duration': None, 'eval_count': 77, 'eval_duration': None, 'model_name': 'minimax-m2:cloud', 'model_provider': 'ollama'} id='lc_run--ffc9d087-ef5e-420a-aaac-af7995bfcdca-0' tool_calls=[{'name': 'get_bugs_summary', 'args': {}, 'id': '029082e1-18b3-4a24-bbb2-9c1b66700cdb', 'type': 'tool_call'}] usage_metadata={'input_tokens': 706, 'output_tokens': 77, 'total_tokens': 783}
+2025-11-19 16:52:19,155 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-11-19 16:52:28,016 - __main__ - INFO - Configuration validated and LangSmith configured
+2025-11-19 16:52:28,019 - __main__ - INFO - Starting Agent Server on port 5002
+2025-11-19 16:52:28,020 - __main__ - INFO - LangSmith Project: Jira-Cheer-Dashboard
+2025-11-19 16:52:28,020 - __main__ - INFO - Jira Tool Server: http://localhost:5001
+2025-11-19 16:52:28,030 - werkzeug - WARNING -  * Debugger is active!
+2025-11-19 16:52:28,035 - werkzeug - INFO -  * Debugger PIN: 488-937-965

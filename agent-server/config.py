@@ -18,10 +18,10 @@ class Config:
     LANGCHAIN_PROJECT = os.getenv('LANGCHAIN_PROJECT', 'Jira-Cheer-Dashboard')
     
     # LLM Provider Configuration
-    # Supported providers: groq, together, ollama, gemini, replicate
-    LLM_PROVIDER = os.getenv('LLM_PROVIDER', 'groq').lower()
+    # Supported providers: ollama (default), groq, together, gemini, replicate
+    LLM_PROVIDER = os.getenv('LLM_PROVIDER', 'ollama').lower()
 
-    # Groq Configuration (default)
+    # Groq Configuration
     GROQ_API_KEY = os.getenv('GROQ_API_KEY')
     GROQ_MODEL = os.getenv('GROQ_MODEL', 'llama-3.1-70b-versatile')
 

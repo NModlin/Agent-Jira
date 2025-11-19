@@ -93,14 +93,10 @@ echo.
 echo Next steps:
 echo.
 echo 1. Configure your environment variables:
-echo    - Edit jira-tool-server\.env with your Jira credentials
-echo    - Edit agent-server\.env with your LangSmith and Gemini API keys
+echo    - Edit jira-tool-server\.env with your Jira credentials and project key
+echo    - Edit agent-server\.env with your LangSmith and LLM provider API keys
 echo.
-echo 2. Update Jira project key:
-echo    - Edit jira-tool-server\jira_client.py
-echo    - Replace 'YOUR_PROJECT' with your actual Jira project key
-echo.
-echo 3. Start the servers (in separate terminals):
+echo 2. Start the servers (in separate terminals):
 echo.
 echo    Terminal 1 - Jira Tool Server:
 echo    $ cd jira-tool-server
@@ -116,7 +112,7 @@ echo    Terminal 3 - Frontend:
 echo    $ cd frontend
 echo    $ npm run dev
 echo.
-echo 4. Open http://localhost:3000 in your browser
+echo 3. Open http://localhost:3000 in your browser
 echo.
 echo For detailed setup instructions, see:
 echo   - README.md (main documentation)
