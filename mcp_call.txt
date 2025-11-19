@@ -1,0 +1,3 @@
+
+2025-11-19 14:38:07,620 - mcp_client - INFO - Calling MCP tool: jira_search with arguments: {'jql': 'project = HD AND type = Bug AND status != Done', 'fields': ['priority'], 'limit': 100}
+
