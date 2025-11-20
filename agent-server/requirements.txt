@@ -11,7 +11,7 @@ mcp>=1.0.0
 langchain-ollama
 
 # Optional LLM providers (install as needed)
-# langchain-google-genai==0.0.5  # For Gemini
+langchain-google-genai  # For Gemini
 # langchain-groq==0.0.1  # For Groq
 # langchain-together==0.0.1  # For Together AI
 

@@ -26,10 +26,10 @@ async def get_bugs_summary() -> dict:
         logger.info("Calling get_bugs_summary via MCP")
         jql = f"project = {PROJECT_KEY} AND type = Bug AND status != Done"
         
-        result = await mcp_client.call_tool("jira_search", {
+        result = await mcp_client.call_tool("searchIssues", {
             "jql": jql,
             "fields": "priority",
-            "limit": 100
+            "maxResults": 100
         })
         
         # Parse MCP result
@@ -49,10 +49,10 @@ async def get_bugs_summary() -> dict:
         
         issues = data.get("issues", [])
         total_bugs = len(issues) # Or data.get('total') if available and accurate for pagination
-        
+
         priority_breakdown = {}
         for issue in issues:
-            priority = issue.get("fields", {}).get("priority", {}).get("name", "Unknown")
+            priority = issue.get("priority", "Unknown")
             priority_breakdown[priority] = priority_breakdown.get(priority, 0) + 1
             
         return {
@@ -91,10 +91,10 @@ async def get_tasks_for_user(username: str) -> dict:
         
         jql = f"project = {PROJECT_KEY} AND assignee = \"{username}\" AND status != Done"
         
-        result = await mcp_client.call_tool("jira_search", {
+        result = await mcp_client.call_tool("searchIssues", {
             "jql": jql,
             "fields": "summary,status,issuetype",
-            "limit": 20
+            "maxResults": 20
         })
         
         if not result.content:
@@ -108,9 +108,9 @@ async def get_tasks_for_user(username: str) -> dict:
         for issue in issues:
             formatted_issues.append({
                 "key": issue.get("key"),
-                "summary": issue.get("fields", {}).get("summary"),
-                "status": issue.get("fields", {}).get("status", {}).get("name"),
-                "type": issue.get("fields", {}).get("issuetype", {}).get("name")
+                "summary": issue.get("summary"),
+                "status": issue.get("status"),
+                "type": issue.get("issueType")
             })
             
         return {
@@ -139,9 +139,9 @@ async def get_overall_progress() -> dict:
         logger.info("Calling get_overall_progress via MCP")
         jql = f"project = {PROJECT_KEY} AND status = Done AND updated >= -7d"
         
-        result = await mcp_client.call_tool("jira_search", {
+        result = await mcp_client.call_tool("searchIssues", {
             "jql": jql,
-            "limit": 50
+            "maxResults": 50
         })
         
         if not result.content:
@@ -175,10 +175,10 @@ async def get_unassigned_queue(priority: str = None) -> dict:
             
         jql += " ORDER BY created DESC"
         
-        result = await mcp_client.call_tool("jira_search", {
+        result = await mcp_client.call_tool("searchIssues", {
             "jql": jql,
             "fields": "summary,priority,created",
-            "limit": 10
+            "maxResults": 10
         })
         
         if not result.content:
@@ -194,10 +194,10 @@ async def get_unassigned_queue(priority: str = None) -> dict:
         for i in data.get("issues", []):
             issues.append({
                 "key": i["key"],
-                "summary": i["fields"]["summary"],
-                "priority": i["fields"]["priority"]["name"]
+                "summary": i.get("summary", ""),
+                "priority": i.get("priority", "None")
             })
-            
+
         return {"count": len(issues), "issues": issues}
     except Exception as e:
         return {"error": str(e)}

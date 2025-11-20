@@ -37,11 +37,11 @@ class MCPClient:
         
         server_params = StdioServerParameters(
             command="docker",
-            args=["exec", "-i", MCP_CONTAINER, "mcp-atlassian"],
+            args=["exec", "-i", MCP_CONTAINER, "node", "/app/dist/index.js"],
             env=None # Inherit env
         )
         
-        logger.info(f"Executing: docker exec -i {MCP_CONTAINER} mcp-atlassian")
+        logger.info(f"Executing: docker exec -i {MCP_CONTAINER} node /app/dist/index.js")
         
         try:
             async with stdio_client(server_params) as (read, write):

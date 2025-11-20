@@ -3,8 +3,9 @@ LangGraph agent for Jira queries.
 Uses various LLM providers (Groq, Together AI, Ollama, Gemini, etc.) to reason about user queries and call appropriate tools.
 """
 from typing import TypedDict, Annotated, Sequence
-from langchain_core.messages import BaseMessage, HumanMessage, AIMessage, ToolMessage
+from langchain_core.messages import BaseMessage, HumanMessage, AIMessage, ToolMessage, SystemMessage
 from langgraph.graph import StateGraph, END
+from langgraph.graph.message import add_messages
 from langgraph.prebuilt import ToolNode
 from mcp_tools import ALL_TOOLS
 from config import Config
@@ -56,7 +57,8 @@ def get_llm():
         return ChatGoogleGenerativeAI(
             model=Config.GEMINI_MODEL,
             google_api_key=Config.GOOGLE_API_KEY,
-            temperature=0.7
+            temperature=0.7,
+            convert_system_message_to_human=True  # Convert SystemMessage to HumanMessage for Gemini
         )
 
     elif provider == 'replicate':
@@ -76,7 +78,7 @@ def get_llm():
 # Define the agent state
 class AgentState(TypedDict):
     """State of the agent conversation."""
-    messages: Annotated[Sequence[BaseMessage], "The messages in the conversation"]
+    messages: Annotated[Sequence[BaseMessage], add_messages]
 
 
 # System prompt for the agent
@@ -113,17 +115,38 @@ def create_agent():
     # Define the function that calls the model
     def call_model(state: AgentState) -> AgentState:
         """Call the LLM with the current state."""
-        messages = state["messages"]
-        
-        # Add system prompt if this is the first message
+        messages = list(state["messages"])  # Create a copy
+
+        logger.info(f"call_model: Received {len(messages)} messages")
+        logger.info(f"call_model: Message types: {[type(m).__name__ for m in messages]}")
+
+        # For Gemini: prepend system prompt to the first human message
         if len(messages) == 1 and isinstance(messages[0], HumanMessage):
-            messages = [HumanMessage(content=SYSTEM_PROMPT)] + messages
-        
-        logger.info(f"Calling model with {len(messages)} messages")
-        response = llm_with_tools.invoke(messages)
-        logger.info(f"Model response: {response}")
-        
-        return {"messages": messages + [response]}
+            # Prepend system prompt to the first human message content
+            messages[0] = HumanMessage(content=f"{SYSTEM_PROMPT}\n\nUser: {messages[0].content}")
+            logger.info(f"call_model: Added system prompt to first message")
+
+        # Gemini requires at least one HumanMessage or AIMessage
+        # If we only have ToolMessages (after tool execution), we need to ensure
+        # the conversation history includes the original messages
+        has_human_or_ai = any(isinstance(m, (HumanMessage, AIMessage)) for m in messages)
+        if not has_human_or_ai:
+            logger.error(f"call_model: No HumanMessage or AIMessage found! This shouldn't happen.")
+            logger.error(f"call_model: Messages: {messages}")
+            raise ValueError("Message list must contain at least one HumanMessage or AIMessage for Gemini")
+
+        logger.info(f"call_model: About to invoke LLM with {len(messages)} messages")
+
+        try:
+            response = llm_with_tools.invoke(messages)
+            logger.info(f"call_model: Model response received successfully")
+        except Exception as e:
+            logger.error(f"call_model: Error invoking LLM: {e}")
+            logger.error(f"call_model: Messages being sent: {messages}")
+            raise
+
+        # Return original messages + response (not the modified messages)
+        return {"messages": state["messages"] + [response]}
     
     # Define the function that determines whether to continue or end
     def should_continue(state: AgentState) -> str:
